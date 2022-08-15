@@ -21,3 +21,5 @@ func diagonalDifference(arr [][]int32) int32 {
     return int32(math.Abs(float64(diagonalA) - float64(diagonalB)))
 
 }
+
+func main() {}
