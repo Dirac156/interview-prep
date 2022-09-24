@@ -11,19 +11,16 @@ function computeAsciiCode(asciicode: number, shift: number, extreme: number): nu
 }
 
 function computeShift(shift: number): number {
-    let rem: number = shift / 26;
-    if ( rem < 1) return shift;
-    return computeShift(shift - 26);
+    return  shift / 26 < 1 ? shift : computeShift(shift - 26);
 }
 
 function shifCharacter(char: number, shift: number): number {
-    let shiftedChar = char;
     if (char >= 65 && char <= 90) {
-        shiftedChar = computeAsciiCode(char, computeShift(shift), 90);
+        return computeAsciiCode(char, computeShift(shift), 90);
     } else if (char >= 97 && char <= 122) {
-        shiftedChar = computeAsciiCode(char, computeShift(shift), 122);
+        return computeAsciiCode(char, computeShift(shift), 122);
     }
-    return shiftedChar;
+    return char;
 }
 
 function shiftCharacters(char: number[], shift: number): number[] {
@@ -40,7 +37,6 @@ function shiftCharacters(char: number[], shift: number): number[] {
  */
 
 function caesarCipher(s: string, k: number): string {
-    // Write your code here
     let changedMessageCode: number[] = []
     for (let idx = 0; idx < s.length; idx++) {
         changedMessageCode.push(getAsciiCode(s[idx]));
